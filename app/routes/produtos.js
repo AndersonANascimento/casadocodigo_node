@@ -1,18 +1,35 @@
-var connectionFactory = require('../infra/connectionFactory');
-
 module.exports = function (app) {
     app.get('/produtos', function (req, res) {
-        console.log("Listando produtos...");
-        var connection = connectionFactory();
+        var connection = app.infra.connectionFactory();
+        var produtos = new app.infra.ProdutosDAO(connection);
         // consulta
-        connection.query('SELECT * FROM produtos', function(err, results) {
+        produtos.lista(function(err, results) {
             //res.send(results);
+            console.log("Listando produtos...");
             res.render('produtos/lista', {lista: results});
         });
         connection.end();
     });
 
-    app.get('/detalhe', function(req, res){
+    //app.get('/produtos/detalhe', function (req, res) {
+    //    var connection = app.infra.connectionFactory();
+    //    var produtosBanco = app.infra.produtosBanco(connection);
+    //    // consulta
+    //    produtosBanco.detalhe(id, function(err, results) {
+    //        //res.send(results);
+    //        console.log("Listando produtos...");
+    //        res.render('produtos/lista', {lista: results});
+    //    });
+    //    connection.end();
+    //});
+
+    app.get('/produtos/remove', function(req, res){
+        var connection = app.infra.connectionFactory();
+        var produtosBanco = app.infra.produtosBanco(connection);
+        var produto = produtosBanco.carrega(id, callback);
+        if(produto) {
+            produtosBanco.remove(connection,produto,callback);
+        }
 
     });
 };
