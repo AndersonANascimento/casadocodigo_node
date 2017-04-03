@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Produto</title>
+  </head>
+  <body>
+    <form action="/produtos" method="post">
+      <div>
+        <label for="titulo">Título</label>
+        <input type="text" id="titulo" name="titulo" placeholder="Informe o Título do Livro" />
+      </div>
+      <div>
+        <label for="preco">Preço</label>
+        <input type="text" id="preco" name="preco" placeholder="Informe o Preço do Livro" />
+      </div>
+      <div>
+        <label for="descricao">Descrição</label>
+        <textarea cols="20" rows="10" type="text" id="descricao" name="descricao" placeholder="Informe a Descrição do Livro" ></textarea>
+      </div>
+      <input type="submit" value="Gravar" />
+    </form>
+  </body>
+</html>
